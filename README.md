@@ -104,7 +104,9 @@ $ npm install -g typescript ts-node
 
 #### Event Bus
 
-- Nats Streaming Server
+- [Nats Streaming Server](https://docs.nats.io)
+- [Nats Streaming at docker hub](https://hub.docker.com/_/nats-streaming)
+- 
 
 ##### Events definition
 
