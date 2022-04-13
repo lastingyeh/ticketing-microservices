@@ -8,8 +8,8 @@ interface UserAttrs {
 
 // interface that describes the properties
 // that a User Model has
-interface UserModel extends mongoose.Model<any> {
-	build(attrs: UserAttrs): any;
+interface UserModel extends mongoose.Model<UserDoc> {
+	build(attrs: UserAttrs): UserDoc;
 }
 
 // interface that describes the properties
@@ -33,12 +33,12 @@ const userSchema = new mongoose.Schema(
 	{
 		toJSON: {
 			transform(doc, ret) {
-        ret.id = ret._id;
+				ret.id = ret._id;
 
-        delete ret._id;
+				delete ret._id;
 				delete ret.password;
-        // use versionKey instead
-        // delete ret.__v
+				// use versionKey instead
+				// delete ret.__v
 			},
 			versionKey: false,
 		},
