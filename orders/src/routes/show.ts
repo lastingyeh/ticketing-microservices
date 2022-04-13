@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 
-import { requireAuth, NotFoundError } from '@lastingtickets/common';
+import { requireAuth, NotFoundError, NotAuthorizedError } from '@lastingtickets/common';
 import { Order } from '../models/order';
-import { NotAuthorizedError } from './../../../common/src/errors/not-authorized-error';
 
 const router = express.Router();
 
