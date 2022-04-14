@@ -1,26 +1,26 @@
+import {
+	Listener,
+	OrderCancelledEvent,
+	Subjects,
+} from '@lastingtickets/common';
 import { Message } from 'node-nats-streaming';
-import { Listener, OrderCreatedEvent, Subjects } from '@lastingtickets/common';
-import { queueGroupName } from './queue-group-name';
 import { Ticket } from '../../models/ticket';
 import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher';
+import { queueGroupName } from './queue-group-name';
 
-export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
-	readonly subject = Subjects.OrderCreated;
+export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
+	readonly subject = Subjects.OrderCancelled;
 	queueGroupName = queueGroupName;
 
-	async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
-		// find the ticket that the order is reserving
+	async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
 		const ticket = await Ticket.findById(data.ticket.id);
 
-		// if no ticket, throw error
 		if (!ticket) {
 			throw new Error('Ticket not found');
 		}
 
-		// mark the ticket as being reserved by setting its orderId property
-		ticket.set({ orderId: data.id });
+		ticket.set({ orderId: undefined });
 
-		// save the ticket
 		await ticket.save();
 
 		await new TicketUpdatedPublisher(this.client).publish({
@@ -31,8 +31,5 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
 			orderId: ticket.orderId,
 			version: ticket.version,
 		});
-
-		// ack the message
-		msg.ack();
 	}
 }
