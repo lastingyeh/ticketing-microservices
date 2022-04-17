@@ -134,3 +134,6 @@ dist
 
 # common
 build
+
+# note secret
+secret.txt
