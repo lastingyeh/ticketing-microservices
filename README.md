@@ -136,7 +136,10 @@ $ npm install -g typescript ts-node
 $ npm install --save-dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server
 ```
 
-#### Ingress-nginx with Digital Ocean
+#### References
 
-- https://kubernetes.github.io/ingress-nginx/
-- https://kubernetes.github.io/ingress-nginx/deploy/#digital-ocean
+- [Udemy Course](https://www.udemy.com/course/microservices-with-node-js-and-react/)
+- [Github-StephenGrider](https://github.com/StephenGrider/ticketing)
+- [Ingress Nginx](https://kubernetes.github.io/ingress-nginx/)
+- [Ingress Digital OCEAN](https://kubernetes.github.io/ingress-nginx/deploy/#digital-ocean)
+- [HTTPS](https://cert-manager.io/)
