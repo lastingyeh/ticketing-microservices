@@ -81,47 +81,36 @@ $ npm install -g typescript ts-node
 ```
 
 ## APIs architecture
-### Resources
-
-- Users
-- Tickets
-- Order
-- Charge
-- Common
 
 #### Services
 
 - auth (mongodb)
-- signup
-- signin
-- signout
-- currentuser
+  - signup
+  - signin
+  - signout
+  - currentuser
 - tickets (mongodb)
 - orders (mongodb)
 - expiration (redis)
 - payments (mongodb)
-
-#### Common 
-
-- middlewares
-- events
+- common (npm)
+  - errors
+  - events
+  - middlewares
 
 #### Event Bus
 
 - [Nats Streaming Server](https://docs.nats.io)
 - [Nats Streaming at docker hub](https://hub.docker.com/_/nats-streaming)
-- 
 
 ##### Events definition
 
-- UserCreated
-- UserUpdated
-- OrderCreated
-- OrderCancelled
-- OrderExpired
-- TicketCreated
-- TicketUpdated
-- ChargeCreated
+- order-created
+- order-cancelled
+- expiration-complete
+- ticket-created
+- ticket-updated
+- payment-created
 
 #### TEST
 
